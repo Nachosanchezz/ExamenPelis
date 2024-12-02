@@ -14,7 +14,8 @@ from pathlib import Path
 from decouple import config
 
 
-TMDB_API_KEY = config('TMDB_API_KEY')
+TMDB_API_KEY = config('TMDB_API_KEY', default='clave_por_defecto')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
