@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>My Playlists</title>
+</head>
+<body>
+    <h1>My Playlists</h1>
+    <div>
+        {% for playlist in playlists %}
+            <div>
+                <h2>{{ playlist.name }}</h2>
+                <p>Created At: {{ playlist.created_at }}</p>
+                <ul>
+                    {% for movie in playlist.movies %}
+                        <li>{{ movie.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
