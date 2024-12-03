@@ -14,9 +14,10 @@ def home(request):
     try:
         data = fetch_popular_movies()  # Llama a la función que obtiene películas populares
         movies = data['results']  # La clave 'results' contiene las películas
-        return render(request, 'home.html', {'movies': movies})
+        return render(request, "streaming/home.html", {"movies": movies})
+
     except Exception as e:
-        return render(request, 'home.html', {'error': str(e)})
+        return render(request, "streaming/home.html", {'error': str(e)})
 
 # Vistas para la API
 class MovieListView(APIView):
