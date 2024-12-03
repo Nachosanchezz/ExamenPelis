@@ -10,8 +10,13 @@ from .utils import fetch_popular_movies, fetch_movie_details
 
 # Vista Home para plantillas
 def home(request):
-    movies = Movie.objects.all()
-    return render(request, 'home.html', {'movies': movies})
+    """Obtiene películas populares y las muestra en la plantilla de inicio."""
+    try:
+        data = fetch_popular_movies()  # Llama a la función que obtiene películas populares
+        movies = data['results']  # La clave 'results' contiene las películas
+        return render(request, 'home.html', {'movies': movies})
+    except Exception as e:
+        return render(request, 'home.html', {'error': str(e)})
 
 # Vistas para la API
 class MovieListView(APIView):
