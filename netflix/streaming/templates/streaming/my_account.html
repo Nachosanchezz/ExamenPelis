@@ -13,21 +13,6 @@ Mi Cuenta
     <p>Bienvenido, {{ user.username }}.</p>
     <p><a href="{% url 'streaming:logout' %}">Cerrar sesión</a></p>
 
-    <h2>Tus Recomendaciones</h2>
-    <div class="carousel-container">
-        <div class="carousel">
-            {% for movie in recommended_movies %}
-            <div class="carousel-item">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
-            </div>
-            {% empty %}
-            <p>No hay recomendaciones disponibles en este momento.</p>
-            {% endfor %}
-        </div>
-    </div>
-    {% else %}
-    <p>Debes iniciar sesión para ver tus recomendaciones.</p>
     {% endif %}
 </div>
 {% endblock %}

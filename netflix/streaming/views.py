@@ -8,7 +8,7 @@ from rest_framework import status
 from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
 from django.http import JsonResponse
-from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series, search_movies, fetch_movies_from_tmdb, fetch_recommendations
+from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series, search_movies, fetch_movies_from_tmdb, fetch_recommendations, fetch_top_rated_movies, fetch_upcoming_movies
 from django.contrib.auth.views import LoginView
 
 # Vista Home para plantillas
@@ -24,11 +24,14 @@ def home(request):
         # Series mejor calificadas
         top_rated_series = fetch_movies_from_tmdb('tv/top_rated')['results']
 
+        recommendations = fetch_recommendations(request.user.id) if request.user.is_authenticated else []
+
         context = {
             'top_rated_movies': top_rated_movies,
             'upcoming_movies': upcoming_movies,
             'popular_series': popular_series,
             'top_rated_series': top_rated_series,
+            'recommended_movies': recommendations,
         }
 
         return render(request, 'streaming/home.html', context)
@@ -38,14 +41,37 @@ def home(request):
     
 def movie_search(request):
     """Vista para buscar películas."""
+    genre_id = request.GET.get('genre', '')  # Obtén el ID del género
     query = request.GET.get('q', '')  # Término de búsqueda
     page = request.GET.get('page', 1)  # Página actual
+    genre_name = ''  # Inicia vacío
+
     try:
-        data = search_movies(query, page=int(page))
+        # Obtener todas las películas de un género
+        if genre_id:
+            genre_name = dict([(str(genre['id']), genre['name']) for genre in fetch_movies_from_tmdb('genre/movie/list')['genres']]).get(genre_id, '')
+            data = fetch_movies_from_tmdb('discover/movie', {'with_genres': genre_id, 'page': int(page)})
+        # Buscar películas por texto
+        elif query:
+            data = search_movies(query, page=int(page))
+        else:
+            data = {'results': []}  # No hay resultados si no hay géneros ni texto
+
         movies = data['results']
-        return render(request, "streaming/search.html", {"movies": movies, "query": query, "page": int(page)})
+        return render(request, "streaming/search.html", {"movies": movies, "query": genre_name or query, "page": int(page)})
     except Exception as e:
-        return render(request, "streaming/search.html", {'error': str(e), "query": query})
+        return render(request, "streaming/search.html", {'error': str(e), "query": genre_name or query})
+
+   
+    
+def movie_details(request, movie_id):
+    """Vista para obtener detalles de una película."""
+    try:
+        data = fetch_movie_details(movie_id)
+        return JsonResponse(data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
 
 # Vistas para la API
 class MovieListView(APIView):
@@ -101,22 +127,32 @@ def popular_movies(request):
 
 
 def movies(request):
-    """Muestra una lista de películas populares en la plantilla `movies.html`."""
+    """Vista para la página de películas."""
     try:
-        data = fetch_popular_movies()  # Llama a la función que obtiene películas populares
-        movies = data['results']  # La clave 'results' contiene las películas
-        return render(request, "streaming/movies.html", {"movies": movies})
-    except Exception as e:
-        return render(request, "streaming/movies.html", {"error": str(e)})
+        # Obtener géneros
+        genres_data = fetch_movies_from_tmdb('genre/movie/list')['genres']
 
+        # Obtener películas de cada categoría
+        top_rated_movies = fetch_top_rated_movies()['results']
+        upcoming_movies = fetch_upcoming_movies()['results']
 
-def movie_details(request, movie_id):
-    """Vista para obtener detalles de una película."""
-    try:
-        data = fetch_movie_details(movie_id)
-        return JsonResponse(data, safe=False)
+        # Buscar películas por género si se selecciona uno
+        genre_id = request.GET.get('genre')
+        genre_movies = []
+        if genre_id:
+            genre_movies = fetch_movies_from_tmdb('discover/movie', {'with_genres': genre_id})['results']
+
+        context = {
+            'top_rated_movies': top_rated_movies,
+            'upcoming_movies': upcoming_movies,
+            'genre_movies': genre_movies,
+            'genres': genres_data,
+        }
+
+        return render(request, "streaming/movies.html", context)
+
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return render(request, "streaming/movies.html", {'error': str(e)})
     
 
 def series(request):

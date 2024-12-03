@@ -1,25 +1,29 @@
 {% extends "streaming/base.html" %}
 {% load static %}
-
-{% block title %}Buscar Películas{% endblock %}
-
+{% block title %}Resultados de la búsqueda{% endblock %}
 {% block content %}
-<h1>Resultados para "{{ query }}"</h1>
-
-<div class="movies-container">
-    {% for movie in movies %}
-        <div class="movie-card">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h2>{{ movie.title }}</h2>
-            <p>{{ movie.release_date }}</p>
+<div class="search-results">
+    <h1>Resultados para "{{ query }}"</h1>
+    <div class="carousel-container">
+        <div class="carousel">
+            {% for movie in movies %}
+            <div class="carousel-item">
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                <h3>{{ movie.title }}</h3>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+    {% if not movies %}
+    <p>No hay resultados disponibles.</p>
+    {% endif %}
 </div>
 
-<div class="pagination">
+<nav class="pagination">
     {% if page > 1 %}
-        <a href="?q={{ query }}&page={{ page|add:-1 }}">Anterior</a>
+    <a href="?q={{ query }}&genre={{ request.GET.genre }}&page={{ page|add:"-1" }}">Anterior</a>
     {% endif %}
-    <a href="?q={{ query }}&page={{ page|add:1 }}">Siguiente</a>
-</div>
+    <a href="?q={{ query }}&genre={{ request.GET.genre }}&page={{ page|add:"1" }}">Siguiente</a>
+</nav>
 {% endblock %}
+

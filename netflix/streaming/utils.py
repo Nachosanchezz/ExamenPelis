@@ -46,8 +46,17 @@ def fetch_top_rated_movies(page=1):
     return fetch_movies_from_tmdb('movie/top_rated', {'page': page})
 
 def fetch_recommendations(user_id):
-    return fetch_movies_from_tmdb('movie/recommendations', {'user_id': user_id})
-   
+        """Obtiene recomendaciones genéricas (por ejemplo, películas populares)."""
+        try:
+            # Usar películas populares como recomendaciones
+            return fetch_movies_from_tmdb('movie/popular')['results']
+        except Exception as e:
+            print(f"Error al obtener recomendaciones: {str(e)}")
+        return []
+    
+def fetch_genres():
+    """Obtiene la lista de géneros desde TMDb."""
+    return fetch_movies_from_tmdb('genre/movie/list')['genres']
 
 
 

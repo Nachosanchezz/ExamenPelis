@@ -201,3 +201,83 @@ nav ul li a:hover {
 .carousel-container {
     margin: 20px 0;
 }
+
+/* Carrusel con desplazamiento horizontal */
+.carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Permite desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    padding: 10px;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 8px; /* Tamaño de la barra de desplazamiento */
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background-color: #e50914; /* Color de la barra */
+    border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: #141414; /* Color de fondo de la barra */
+}
+
+.genre-search {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.genre-search select {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.genre-search button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.genre-search button:hover {
+    background-color: #ffffff;
+}
+
+.search-results h1 {
+    font-size: 24px;
+    color: #e50914;
+    margin-bottom: 20px;
+}
+
+.search-results .carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.search-results .carousel-item {
+    min-width: 200px;
+    max-width: 200px;
+    text-align: center;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.search-results .carousel-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.search-results .carousel-item:hover {
+    transform: scale(1.1);
+}
