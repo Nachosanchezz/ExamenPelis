@@ -1,24 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
 from django.http import JsonResponse
-from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series, search_movies, fetch_movies_from_tmdb
+from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series, search_movies, fetch_movies_from_tmdb, fetch_recommendations
+from django.contrib.auth.views import LoginView
 
 # Vista Home para plantillas
 def home(request):
     """Vista principal que organiza los carruseles de películas y series."""
     try:
         # Películas populares
-        top_rated_movies = fetch_movies_from_tmdb('movie/top_rated')['results'][:20]
+        top_rated_movies = fetch_movies_from_tmdb('movie/top_rated')['results']
         # Estrenos
-        upcoming_movies = fetch_movies_from_tmdb('movie/upcoming')['results'][:20]
+        upcoming_movies = fetch_movies_from_tmdb('movie/upcoming')['results']
         # Series populares
-        popular_series = fetch_movies_from_tmdb('tv/popular')['results'][:20]
+        popular_series = fetch_movies_from_tmdb('tv/popular')['results']
         # Series mejor calificadas
-        top_rated_series = fetch_movies_from_tmdb('tv/top_rated')['results'][:20]
+        top_rated_series = fetch_movies_from_tmdb('tv/top_rated')['results']
 
         context = {
             'top_rated_movies': top_rated_movies,
@@ -123,3 +127,40 @@ def series(request):
         return render(request, "streaming/series.html", {"series": series})
     except Exception as e:
         return render(request, "streaming/series.html", {"error": str(e)})
+
+class CustomLoginView(LoginView):
+    template_name = 'streaming/login.html'
+
+class LogoutView(APIView):
+    def get(self, request):
+        logout(request)
+        return redirect('streaming:home')
+
+
+
+@login_required
+def my_account(request):
+    """Muestra la cuenta del usuario y sus recomendaciones."""
+    try:
+        # Obtiene las recomendaciones personalizadas para el usuario autenticado
+        user_recommendations = fetch_recommendations(request.user.id)  # Basado en usuario
+    except Exception as e:
+        user_recommendations = []
+
+    return render(request, 'streaming/my_account.html', {
+        'recommended_movies': user_recommendations
+    })
+
+
+def register(request):
+    """Registro de nuevos usuarios."""
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('streaming:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'streaming/register.html', {'form': form})
+
+

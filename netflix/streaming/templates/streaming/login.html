@@ -1,0 +1,17 @@
+{% extends "streaming/base.html" %}
+{% load static %}
+{% block title %}
+Inicia sesión
+{% endblock %}
+
+{% block content %}
+<div class="account-container">
+    <h1>Inicia sesión</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar sesión</button>
+    </form>
+    <p>¿No tienes cuenta? <a href="{% url 'streaming:register' %}">Regístrate aquí</a>.</p>
+</div>
+{% endblock %}

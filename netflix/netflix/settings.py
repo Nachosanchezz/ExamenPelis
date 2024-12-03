@@ -132,3 +132,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = '/streaming/login/'  # URL para login
+LOGIN_REDIRECT_URL = '/streaming/my_account/'  # Redirige al usuario después de login
+LOGOUT_REDIRECT_URL = '/'  # Redirige después del logout
