@@ -5,7 +5,7 @@ from rest_framework import status
 from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
 from django.http import JsonResponse
-from .utils import fetch_popular_movies, fetch_movie_details
+from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series
 
 
 # Vista Home para plantillas
