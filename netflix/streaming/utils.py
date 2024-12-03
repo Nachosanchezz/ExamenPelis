@@ -1,12 +1,13 @@
 import requests
 from django.conf import settings
 
+
 def fetch_movies_from_tmdb(endpoint, params=None):
     """Función genérica para interactuar con la API de TMDb."""
     if not params:
         params = {}
     url = f'https://api.themoviedb.org/3/{endpoint}'
-    params['api_key'] = settings.TMDB_API_KEY
+    params = {'api_key': settings.TMDB_API_KEY}
     params['language'] = 'es-ES'
 
     response = requests.get(url, params=params)
