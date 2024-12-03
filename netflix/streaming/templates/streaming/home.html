@@ -1,8 +1,6 @@
 {% extends "streaming/base.html" %}
 {% load static %}
 
-
-
 {% block title %}
 Películas Populares
 {% endblock %}
@@ -10,17 +8,21 @@ Películas Populares
 {% block content %}
 <h1>Películas populares a día de hoy</h1>
 {% if movies %}
-    <div>
-        {% for movie in movies %}
-            <div>
-                <h2>{{ movie.title }}</h2>
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" width="200">
-                <p>{{ movie.overview }}</p>
-                <p>Fecha de lanzamiento: {{ movie.release_date }}</p>
+    <div class="carousel-container">
+        <div class="carousel">
+            {% for movie in movies %}
+            <div class="carousel-item">
+                <img src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
+                <h3>{{ movie.title }}</h3>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control prev">❮</button>
+        <button class="carousel-control next">❯</button>
     </div>
 {% else %}
     <p>No se pudieron cargar las películas. {{ error }}</p>
 {% endif %}
 {% endblock %}
+
+
