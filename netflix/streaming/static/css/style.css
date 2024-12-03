@@ -1,0 +1,102 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414; /* Fondo oscuro */
+    color: #e5e5e5; /* Texto gris claro */
+}
+
+header {
+    background-color: #000; /* Fondo negro */
+    color: #e50914; /* Rojo característico de Netflix */
+    padding: 1rem 0;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: #e5e5e5; /* Gris claro */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #e50914; /* Rojo */
+}
+
+/* Movie Cards */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.card {
+    background-color: #222; /* Fondo de las tarjetas */
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #e50914; /* Rojo */
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #b3b3b3; /* Gris medio */
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: #b3b3b3;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer p a {
+    color: #e50914; /* Rojo */
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
