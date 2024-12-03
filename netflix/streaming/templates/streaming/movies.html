@@ -1,0 +1,25 @@
+{% extends "streaming/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Películas - Netflix UAX
+{% endblock %}
+
+{% block content %}
+<h1>Películas Populares</h1>
+{% if movies %}
+    <div class="movies-container">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <h2>{{ movie.title }}</h2>
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" />
+                <p><strong>Descripción:</strong> {{ movie.overview }}</p>
+                <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No se pudieron cargar las películas. {{ error }}</p>
+{% endif %}
+{% endblock %}

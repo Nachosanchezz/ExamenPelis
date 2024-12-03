@@ -1,0 +1,24 @@
+{% extends "streaming/base.html" %}
+{% load static %}
+
+{% block title %}
+Series - Netflix UAX
+{% endblock %}
+
+{% block content %}
+<h1>Series Populares</h1>
+{% if series %}
+    <div class="series-container">
+        {% for serie in series %}
+            <div class="serie-card">
+                <h2>{{ serie.name }}</h2>
+                <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}" />
+                <p><strong>Descripción:</strong> {{ serie.overview }}</p>
+                <p><strong>Primera emisión:</strong> {{ serie.first_air_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No se pudieron cargar las series. {{ error }}</p>
+{% endif %}
+{% endblock %}

@@ -100,3 +100,57 @@ footer p a {
 footer p a:hover {
     text-decoration: underline;
 }
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.movie-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 250px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.movie-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.movie-card h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.series-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.serie-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 250px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.serie-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.serie-card h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}

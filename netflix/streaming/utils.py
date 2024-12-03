@@ -22,3 +22,7 @@ def fetch_popular_movies():
 def fetch_movie_details(movie_id):
     """Obtiene los detalles de una película por su ID."""
     return fetch_movies_from_tmdb(f'movie/{movie_id}')
+
+def fetch_popular_series():
+    """Obtiene las series populares desde TMDb."""
+    return fetch_movies_from_tmdb('tv/popular')

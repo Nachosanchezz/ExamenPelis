@@ -70,6 +70,18 @@ def popular_movies(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+
+def movies(request):
+    """Muestra una lista de películas populares en la plantilla `movies.html`."""
+    try:
+        data = fetch_popular_movies()  # Llama a la función que obtiene películas populares
+        movies = data['results']  # La clave 'results' contiene las películas
+        return render(request, "streaming/movies.html", {"movies": movies})
+    except Exception as e:
+        return render(request, "streaming/movies.html", {"error": str(e)})
+
+
 def movie_details(request, movie_id):
     """Vista para obtener detalles de una película."""
     try:
@@ -77,3 +89,13 @@ def movie_details(request, movie_id):
         return JsonResponse(data, safe=False)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+
+def series(request):
+    """Muestra una lista de series populares en la plantilla `series.html`."""
+    try:
+        data = fetch_popular_series()  # Llama a la función que obtiene series populares
+        series = data['results']  # La clave 'results' contiene las series
+        return render(request, "streaming/series.html", {"series": series})
+    except Exception as e:
+        return render(request, "streaming/series.html", {"error": str(e)})
