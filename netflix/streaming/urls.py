@@ -1,12 +1,13 @@
 from django.urls import path
 from .views import MovieListView, MovieDetailView, PlaylistView, RecommendationView, home, movies
-from .views import popular_movies, movie_details, series
+from .views import popular_movies, movie_details, series, movie_search
 
 app_name = 'streaming'
 
 
 urlpatterns = [
     path('', home, name='home'),
+    path('search/', movie_search, name='movie-search'),
     path('movies/', movies, name='movies'), 
     path('series/', series, name='series'),
     path('api/popular/', popular_movies, name='popular-movies'),

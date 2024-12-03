@@ -1,0 +1,25 @@
+{% extends "streaming/base.html" %}
+{% load static %}
+
+{% block title %}Buscar Películas{% endblock %}
+
+{% block content %}
+<h1>Resultados para "{{ query }}"</h1>
+
+<div class="movies-container">
+    {% for movie in movies %}
+        <div class="movie-card">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.release_date }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if page > 1 %}
+        <a href="?q={{ query }}&page={{ page|add:-1 }}">Anterior</a>
+    {% endif %}
+    <a href="?q={{ query }}&page={{ page|add:1 }}">Siguiente</a>
+</div>
+{% endblock %}

@@ -1,32 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(".carousel");
-    const prevButton = document.querySelector(".carousel-control.prev");
-    const nextButton = document.querySelector(".carousel-control.next");
+    const carousels = document.querySelectorAll(".carousel-container");
 
-    let scrollPosition = 0; // Posición inicial del carrusel
+    carousels.forEach((carouselContainer) => {
+        const carousel = carouselContainer.querySelector(".carousel");
+        const prevButton = carouselContainer.querySelector(".carousel-control.prev");
+        const nextButton = carouselContainer.querySelector(".carousel-control.next");
 
-    // Ancho de cada ítem (película) incluyendo el margen
-    const itemWidth = document.querySelector(".carousel-item").offsetWidth + 15;
+        let scrollPosition = 0; // Posición inicial del carrusel
 
-    nextButton.addEventListener("click", () => {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth; // Máximo desplazamiento permitido
+        // Ancho de cada ítem (película) incluyendo el margen
+        const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 15;
 
-        scrollPosition += itemWidth * 5; // Avanzar 5 ítems por clic
-        if (scrollPosition > maxScroll) {
-            scrollPosition = 0; // Volver al inicio si se supera el límite
-        }
+        // Evento para avanzar
+        nextButton.addEventListener("click", () => {
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth; // Máximo desplazamiento permitido
 
-        carousel.style.transform = `translateX(-${scrollPosition}px)`;
-    });
+            scrollPosition += itemWidth * 5; // Avanzar 5 ítems por clic
+            if (scrollPosition > maxScroll) {
+                scrollPosition = maxScroll; // Limitar al máximo desplazamiento
+            }
 
-    prevButton.addEventListener("click", () => {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth; // Máximo desplazamiento permitido
+            carousel.style.transform = `translateX(-${scrollPosition}px)`;
+        });
 
-        scrollPosition -= itemWidth * 5; // Retroceder 5 ítems por clic
-        if (scrollPosition < 0) {
-            scrollPosition = maxScroll; // Ir al final si se pasa del inicio
-        }
+        // Evento para retroceder
+        prevButton.addEventListener("click", () => {
+            scrollPosition -= itemWidth * 5; // Retroceder 5 ítems por clic
+            if (scrollPosition < 0) {
+                scrollPosition = 0; // No permitir retroceder más allá del inicio
+            }
 
-        carousel.style.transform = `translateX(-${scrollPosition}px)`;
+            carousel.style.transform = `translateX(-${scrollPosition}px)`;
+        });
     });
 });
+

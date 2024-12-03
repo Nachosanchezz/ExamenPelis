@@ -5,19 +5,43 @@ from rest_framework import status
 from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
 from django.http import JsonResponse
-from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series
-
+from .utils import fetch_popular_movies, fetch_movie_details, fetch_popular_series, search_movies, fetch_movies_from_tmdb
 
 # Vista Home para plantillas
 def home(request):
-    """Obtiene películas populares y las muestra en la plantilla de inicio."""
+    """Vista principal que organiza los carruseles de películas y series."""
     try:
-        data = fetch_popular_movies()  # Llama a la función que obtiene películas populares
-        movies = data['results']  # La clave 'results' contiene las películas
-        return render(request, "streaming/home.html", {"movies": movies})
+        # Películas populares
+        top_rated_movies = fetch_movies_from_tmdb('movie/top_rated')['results'][:20]
+        # Estrenos
+        upcoming_movies = fetch_movies_from_tmdb('movie/upcoming')['results'][:20]
+        # Series populares
+        popular_series = fetch_movies_from_tmdb('tv/popular')['results'][:20]
+        # Series mejor calificadas
+        top_rated_series = fetch_movies_from_tmdb('tv/top_rated')['results'][:20]
+
+        context = {
+            'top_rated_movies': top_rated_movies,
+            'upcoming_movies': upcoming_movies,
+            'popular_series': popular_series,
+            'top_rated_series': top_rated_series,
+        }
+
+        return render(request, 'streaming/home.html', context)
 
     except Exception as e:
-        return render(request, "streaming/home.html", {'error': str(e)})
+        return render(request, 'streaming/home.html', {'error': str(e)})
+    
+def movie_search(request):
+    """Vista para buscar películas."""
+    query = request.GET.get('q', '')  # Término de búsqueda
+    page = request.GET.get('page', 1)  # Página actual
+    try:
+        data = search_movies(query, page=int(page))
+        movies = data['results']
+        return render(request, "streaming/search.html", {"movies": movies, "query": query, "page": int(page)})
+    except Exception as e:
+        return render(request, "streaming/search.html", {'error': str(e), "query": query})
 
 # Vistas para la API
 class MovieListView(APIView):
