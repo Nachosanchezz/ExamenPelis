@@ -38,23 +38,26 @@ header nav ul li a:hover {
 }
 
 /* Carrusel */
-/* Carrusel */
 .carousel-container {
     position: relative;
-    overflow: hidden;
-    max-width: 100%;
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    max-width: 100%; /* Asegura que ocupe todo el ancho disponible */
     margin: 20px auto;
     padding: 0 40px; /* Espacio para los botones */
 }
 
 .carousel {
     display: flex;
-    transition: transform 0.3s ease-in-out;
-    will-change: transform; /* Mejora el rendimiento */
+    gap: 15px;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    padding: 10px;
+    white-space: nowrap; /* Evita que los elementos se corten en líneas múltiples */
+    width: calc(100% - 20px); /* Ajusta el ancho dinámicamente */
 }
 
 .carousel-item {
-    min-width: 200px;
+    min-width: 200px; /* Asegura que los elementos del carrusel tengan un tamaño mínimo */
     max-width: 200px;
     flex-shrink: 0;
     text-align: center;
@@ -63,10 +66,11 @@ header nav ul li a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
+    display: inline-block; /* Evita que los elementos se desplacen fuera del carrusel */
 }
 
 .carousel-item img {
-    width: 100%;
+    width: 100%; /* Asegura que las imágenes se ajusten correctamente */
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -103,13 +107,12 @@ header nav ul li a:hover {
     background-color: #e50914;
 }
 
-
 /* Sección de títulos */
 .movie-container h2,
 .series-container h2 {
     color: #e50914;
     margin-bottom: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 /* Estilo de las tarjetas */
@@ -198,25 +201,13 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-.carousel-container {
-    margin: 20px 0;
-}
-
-/* Carrusel con desplazamiento horizontal */
-.carousel {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto; /* Permite desplazamiento horizontal */
-    scroll-behavior: smooth; /* Desplazamiento suave */
-    padding: 10px;
-}
-
+/* Ajustes del scroll */
 .carousel::-webkit-scrollbar {
     height: 8px; /* Tamaño de la barra de desplazamiento */
 }
 
 .carousel::-webkit-scrollbar-thumb {
-    background-color: #e50914; /* Color de la barra */
+    background-color: #444; /* Cambiado para eliminar el rojo */
     border-radius: 10px;
 }
 
@@ -224,6 +215,7 @@ nav ul li a:hover {
     background: #141414; /* Color de fondo de la barra */
 }
 
+/* Buscador por género */
 .genre-search {
     margin: 20px 0;
     text-align: center;
@@ -281,3 +273,5 @@ nav ul li a:hover {
 .search-results .carousel-item:hover {
     transform: scale(1.1);
 }
+
+
