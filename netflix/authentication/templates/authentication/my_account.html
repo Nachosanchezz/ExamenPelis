@@ -11,7 +11,7 @@ Mi Cuenta
 
     {% if user.is_authenticated %}
     <p>Bienvenido, {{ user.username }}.</p>
-    <p><a href="{% url 'streaming:logout' %}">Cerrar sesión</a></p>
+    <p><a href="{% url 'authentication:logout' %}">Cerrar sesión</a></p>
 
     {% endif %}
 </div>
