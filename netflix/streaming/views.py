@@ -119,13 +119,34 @@ def movies(request):
 
 
 def series(request):
-    """Muestra una lista de series populares en la plantilla `series.html`."""
+    """Muestra series populares o series filtradas por género."""
     try:
-        data = fetch_popular_series()
-        series = data["results"]
-        return render(request, "streaming/series.html", {"series": series})
+        genres_data = fetch_movies_from_tmdb("genre/tv/list")["genres"]  # Géneros de series
+        genre_id = request.GET.get("genre")  # ID del género seleccionado
+
+        if genre_id:
+            # Series filtradas por género
+            genre_series = fetch_movies_from_tmdb(
+                "discover/tv", {"with_genres": genre_id}
+            )["results"]
+            return render(
+                request,
+                "streaming/series.html",
+                {"genres": genres_data, "genre_series": genre_series},
+            )
+        else:
+            # Series populares si no hay género seleccionado
+            popular_series = fetch_popular_series()["results"]
+            return render(
+                request,
+                "streaming/series.html",
+                {"genres": genres_data, "popular_series": popular_series},
+            )
+
     except Exception as e:
         return render(request, "streaming/series.html", {"error": str(e)})
+
+
 
 
 class MovieListView(APIView):

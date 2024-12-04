@@ -59,6 +59,13 @@ def fetch_genres():
     return fetch_movies_from_tmdb('genre/movie/list')['genres']
 
 
+def fetch_series_genres():
+    """Obtiene la lista de géneros de series desde TMDb."""
+    return fetch_movies_from_tmdb("genre/tv/list")["genres"]
+
+def search_series_by_genre(genre_id, page=1):
+    """Busca series por género utilizando la API de TMDb."""
+    return fetch_movies_from_tmdb("discover/tv", {"with_genres": genre_id, "page": page})
 
 
 
