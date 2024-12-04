@@ -23,7 +23,7 @@ Películas - Netflix UAX
 <!-- Carrusel de Películas Mejor Calificadas -->
 <div class="carousel-container">
     <h2 class="section-title">Películas Mejor Calificadas</h2>
-    <button class="carousel-control prev">‹</button>
+    
     <div class="carousel">
         {% for movie in top_rated_movies %}
         <div class="carousel-item">
@@ -32,13 +32,13 @@ Películas - Netflix UAX
         </div>
         {% endfor %}
     </div>
-    <button class="carousel-control next">›</button>
+    
 </div>
 
 <!-- Carrusel de Películas Próximas -->
 <div class="carousel-container">
     <h2 class="section-title">Próximas Películas</h2>
-    <button class="carousel-control prev">‹</button>
+    
     <div class="carousel">
         {% for movie in upcoming_movies %}
         <div class="carousel-item">
@@ -47,13 +47,13 @@ Películas - Netflix UAX
         </div>
         {% endfor %}
     </div>
-    <button class="carousel-control next">›</button>
+    
 </div>
 
 <!-- Carrusel de Películas por Género -->
 <div class="carousel-container">
     <h2 class="section-title">Películas por Género</h2>
-    <button class="carousel-control prev">‹</button>
+    
     <div class="carousel">
         {% for movie in genre_movies %}
         <div class="carousel-item">
@@ -62,7 +62,7 @@ Películas - Netflix UAX
         </div>
         {% endfor %}
     </div>
-    <button class="carousel-control next">›</button>
+    
 </div>
 
 {% endblock %}
