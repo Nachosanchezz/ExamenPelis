@@ -97,6 +97,7 @@ def search_by_name(request):
         )
 
 
+
 def movie_search(request):
     """Vista para buscar películas."""
     genre_id = request.GET.get("genre", "")
