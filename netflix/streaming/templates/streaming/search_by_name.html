@@ -1,11 +1,15 @@
 {% extends "streaming/base.html" %}
 {% load static %}
 {% block title %}Resultados de la búsqueda{% endblock %}
-{% block content %}
 
+{% block content %}
 <div class="search-results">
     <h1>Resultados para "{{ query }}"</h1>
+
+    <!-- Resultados de películas -->
+    {% if movies %}
     <div class="carousel-container">
+        <h2>Películas</h2>
         <div class="carousel">
             {% for movie in movies %}
             <div class="carousel-item">
@@ -15,22 +19,33 @@
             {% endfor %}
         </div>
     </div>
-    {% if not movies %}
-    <p>No hay resultados disponibles.</p>
+    {% else %}
+    <p>No se encontraron películas relacionadas con "{{ query }}".</p>
+    {% endif %}
+
+    <!-- Resultados de series -->
+    {% if series %}
+    <div class="carousel-container">
+        <h2>Series</h2>
+        <div class="carousel">
+            {% for serie in series %}
+            <div class="carousel-item">
+                <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
+                <h3>{{ serie.name }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <p>No se encontraron series relacionadas con "{{ query }}".</p>
     {% endif %}
 </div>
 
-
-
+<!-- Paginación -->
 <nav class="pagination">
     {% if page > 1 %}
     <a href="?q={{ query }}&page={{ page|add:"-1" }}">Anterior</a>
     {% endif %}
     <a href="?q={{ query }}&page={{ page|add:"1" }}">Siguiente</a>
 </nav>
-
-
-
-
 {% endblock %}
-

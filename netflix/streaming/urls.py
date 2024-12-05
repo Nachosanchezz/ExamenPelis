@@ -10,6 +10,7 @@ from .views import (
     movie_details,
     series,
     movie_search,
+    search_by_name,
 )
 
 app_name = "streaming"
@@ -17,6 +18,7 @@ app_name = "streaming"
 urlpatterns = [
     path("", home, name="home"),
     path("search/", movie_search, name="movie-search"),
+    path("search_by_name/", search_by_name, name="search-by-name"),
     path("movies/", movies, name="movies"),
     path("series/", series, name="series"),
     path("api/movie/<int:movie_id>/", movie_details, name="movie-details"),

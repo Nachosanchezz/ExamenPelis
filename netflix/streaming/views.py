@@ -56,9 +56,45 @@ def home(request):
         return render(request, "streaming/home.html", {"error": str(e)})
 
 
+def search_by_name(request):
+    """Vista para buscar películas o series por nombre."""
+    query = request.GET.get("q", "").strip()
+    page = request.GET.get("page", 1)
 
+    try:
+        movies = []
+        series = []
 
+        if query:
+            # Buscar películas
+            movie_data = search_movies(query, page=int(page))
+            movies = movie_data.get("results", [])
 
+            # Buscar series
+            series_data = fetch_movies_from_tmdb("search/tv", {"query": query, "page": page})
+            series = series_data.get("results", [])
+
+        return render(
+            request,
+            "streaming/search_by_name.html",
+            {
+                "movies": movies,
+                "series": series,
+                "query": query,
+                "page": int(page),
+            },
+        )
+    except Exception as e:
+        return render(
+            request,
+            "streaming/search_by_name.html",
+            {
+                "error": str(e),
+                "movies": [],
+                "series": [],
+                "query": query,
+            },
+        )
 
 
 def movie_search(request):

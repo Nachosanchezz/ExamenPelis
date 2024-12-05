@@ -15,12 +15,16 @@
                 <li><a href="{% url 'streaming:movies' %}">Películas</a></li>
                 <li><a href="{% url 'streaming:series' %}">Series</a></li>
                 <li><a href="{% url 'authentication:my_account' %}">Mi Cuenta</a></li>
-               
+                <li>
+                    <div class="search-container">
+            
+                        <form method="GET" action="{% url 'streaming:search-by-name' %}" id="search-form" class="hidden">
+                            <input type="text" name="q" placeholder="Buscar películas o series..." class="search-input">
+                            <button type="submit" class="search-submit">🔍</button>
+                        </form>
+                    </div>
+                </li>
             </ul>
-            <form method="GET" action="{% url 'streaming:home' %}" class="search-bar">
-                <input type="text" name="q" placeholder="Buscar películas o series..." value="{{ query|default:'' }}">
-                <button type="submit">🔍</button>
-            </form>
         </nav>
     </header>
     <main>
