@@ -1,15 +1,15 @@
 {% extends "streaming/base.html" %}
 {% load static %}
 {% block title %}
-Bienvenido a Netflix UAX
+Nacho's Netflix
 {% endblock %}
 
 {% block content %}
-<h1>Bienvenido a Netflix UAX</h1>
+
 
 <!-- Carrusel de Películas más valoradas -->
 <div class="carousel-container">
-    <h2 class="section-title">Películas Top Rated</h2>
+    <h2 class="section-title">Películas Mejor Valoradas</h2>
     <div class="carousel">
         {% for movie in top_rated_movies %}
         <div class="carousel-item">
@@ -48,7 +48,7 @@ Bienvenido a Netflix UAX
 
 <!-- Carrusel de Series Mejor Valoradas -->
 <div class="carousel-container">
-    <h2 class="section-title">Series Top Rated</h2>
+    <h2 class="section-title">Series Mejor Valoradas</h2>
     <div class="carousel">
         {% for serie in top_rated_series %}
         <div class="carousel-item">
@@ -61,7 +61,7 @@ Bienvenido a Netflix UAX
 
 <!-- Carrusel de Recomendaciones -->
 <div class="carousel-container">
-    <h2>Tus Recomendaciones</h2>
+    <h2>Basado en tus Gustos</h2>
     <div class="carousel">
         {% for movie in recommended_movies %}
         <div class="carousel-item">

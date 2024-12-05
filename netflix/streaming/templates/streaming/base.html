@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Netflix UAX{% endblock %}</title>
+    <title>{% block title %}Nacho's Netflix{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
+        <h1>Nacho's Netflix</h1>
         <nav>
             <ul>
                 <li><a href="{% url 'streaming:home' %}">Inicio</a></li>
@@ -17,22 +18,22 @@
                 <li><a href="{% url 'authentication:my_account' %}">Mi Cuenta</a></li>
                 <li>
                     <div class="search-container">
-                        <form method="GET" action="{% url 'streaming:search-by-name' %}" class="search-bar">
-                            <input type="text" name="q" placeholder="Buscar películas o series..." value="{{ query|default:'' }}">
-                            <button type="submit">🔍</button>
+                        <form method="GET" action="{% url 'streaming:search-by-name' %}" id="search-form" class="hidden">
+                            <input type="text" name="q" placeholder="Buscar películas o series..." class="search-input">
+                            <button type="submit" class="search-submit">🔍</button>
                         </form>
-                        
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
+    
     <main>
         {% block content %}
         {% endblock %}
     </main>
     <footer>
-        <p>&copy; 2023 Netflix UAX. Todos los derechos reservados.</p>
+        <p>&copy; 2023 Nacho's Netflix. Todos los derechos reservados.</p>
     </footer>
     <script src="{% static 'js/scripts.js' %}"></script>
 </body>
