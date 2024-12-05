@@ -18,7 +18,7 @@ from .utils import (
 
 
 def home(request):
-    """Vista principal que organiza los carruseles de películas y series."""
+    """Vista principal que organiza los carruseles de películas y series y el buscador."""
     try:
         top_rated_movies = fetch_movies_from_tmdb("movie/top_rated")["results"]
         upcoming_movies = fetch_movies_from_tmdb("movie/upcoming")["results"]
@@ -31,18 +31,34 @@ def home(request):
             else []
         )
 
+        # Manejar búsqueda por nombre
+        query = request.GET.get("q", "")
+        search_results = []
+        if query:
+            # Buscar en películas y series
+            movie_results = search_movies(query)["results"]
+            series_results = fetch_movies_from_tmdb("search/tv", {"query": query})["results"]
+            search_results = movie_results + series_results
+
         context = {
             "top_rated_movies": top_rated_movies,
             "upcoming_movies": upcoming_movies,
             "popular_series": popular_series,
             "top_rated_series": top_rated_series,
             "recommended_movies": recommendations,
+            "search_results": search_results,
+            "query": query,
         }
 
         return render(request, "streaming/home.html", context)
 
     except Exception as e:
         return render(request, "streaming/home.html", {"error": str(e)})
+
+
+
+
+
 
 
 def movie_search(request):
@@ -80,6 +96,7 @@ def movie_search(request):
             "streaming/search.html",
             {"error": str(e), "query": genre_name or query},
         )
+
 
 
 def movie_details(request, movie_id):

@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Resultados de la búsqueda{% endblock %}
 {% block content %}
+
 <div class="search-results">
     <h1>Resultados para "{{ query }}"</h1>
     <div class="carousel-container">
@@ -18,6 +19,8 @@
     <p>No hay resultados disponibles.</p>
     {% endif %}
 </div>
+
+
 
 <nav class="pagination">
     {% if page > 1 %}

@@ -10,7 +10,6 @@ Bienvenido a Netflix UAX
 <!-- Carrusel de Películas más valoradas -->
 <div class="carousel-container">
     <h2 class="section-title">Películas Top Rated</h2>
-    
     <div class="carousel">
         {% for movie in top_rated_movies %}
         <div class="carousel-item">
@@ -19,12 +18,11 @@ Bienvenido a Netflix UAX
         </div>
         {% endfor %}
     </div>
-    
 </div>
 
+<!-- Carrusel de Películas Próximas -->
 <div class="carousel-container">
     <h2 class="section-title">Películas Próximas</h2>
-    
     <div class="carousel">
         {% for movie in upcoming_movies %}
         <div class="carousel-item">
@@ -33,12 +31,11 @@ Bienvenido a Netflix UAX
         </div>
         {% endfor %}
     </div>
-    
 </div>
 
+<!-- Carrusel de Series Populares -->
 <div class="carousel-container">
     <h2 class="section-title">Series Populares</h2>
-    
     <div class="carousel">
         {% for serie in popular_series %}
         <div class="carousel-item">
@@ -47,12 +44,11 @@ Bienvenido a Netflix UAX
         </div>
         {% endfor %}
     </div>
-    
 </div>
 
+<!-- Carrusel de Series Mejor Valoradas -->
 <div class="carousel-container">
     <h2 class="section-title">Series Top Rated</h2>
-    
     <div class="carousel">
         {% for serie in top_rated_series %}
         <div class="carousel-item">
@@ -61,27 +57,21 @@ Bienvenido a Netflix UAX
         </div>
         {% endfor %}
     </div>
-    
 </div>
 
+<!-- Carrusel de Recomendaciones -->
 <div class="carousel-container">
     <h2>Tus Recomendaciones</h2>
-    <div class="carousel-container">
-        <div class="carousel">
-            {% for movie in recommended_movies %}
-            <div class="carousel-item">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
-            </div>
-            {% empty %}
-            <p>No hay recomendaciones disponibles en este momento.</p>
-            {% endfor %}
+    <div class="carousel">
+        {% for movie in recommended_movies %}
+        <div class="carousel-item">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
         </div>
+        {% empty %}
+        <p>No hay recomendaciones disponibles en este momento.</p>
+        {% endfor %}
     </div>
-</div>
-    
-
 </div>
 
 {% endblock %}
-

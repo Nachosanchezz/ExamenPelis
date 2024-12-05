@@ -17,6 +17,10 @@
                 <li><a href="{% url 'authentication:my_account' %}">Mi Cuenta</a></li>
                
             </ul>
+            <form method="GET" action="{% url 'streaming:home' %}" class="search-bar">
+                <input type="text" name="q" placeholder="Buscar películas o series..." value="{{ query|default:'' }}">
+                <button type="submit">🔍</button>
+            </form>
         </nav>
     </header>
     <main>

@@ -59,6 +59,7 @@ def fetch_genres():
     return fetch_movies_from_tmdb('genre/movie/list')['genres']
 
 
+
 def fetch_series_genres():
     """Obtiene la lista de géneros de series desde TMDb."""
     return fetch_movies_from_tmdb("genre/tv/list")["genres"]

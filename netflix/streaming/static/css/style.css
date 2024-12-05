@@ -274,4 +274,75 @@ nav ul li a:hover {
     transform: scale(1.1);
 }
 
+/* Estilo de la barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 5px;
+    background-color: #222;
+    border-radius: 20px;
+}
+
+.search-bar input {
+    border: none;
+    background-color: transparent;
+    color: #e5e5e5;
+    padding: 5px 10px;
+    outline: none;
+    width: 200px;
+}
+
+.search-bar input::placeholder {
+    color: #b3b3b3;
+}
+
+.search-bar button {
+    border: none;
+    background: none;
+    color: #e50914;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.search-bar button:hover {
+    color: #fff;
+}
+
+/* Resultados de búsqueda */
+.search-results h2 {
+    color: #e50914;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-results .carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.search-results .carousel-item {
+    min-width: 200px;
+    max-width: 200px;
+    text-align: center;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.search-results .carousel-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.search-results .carousel-item:hover {
+    transform: scale(1.05);
+}
 
