@@ -36,3 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const carouselItems = document.querySelectorAll(".carousel-item");
+
+    carouselItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+            // Alterna la clase para mostrar/ocultar la descripción
+            item.classList.toggle("show-description");
+        });
+    });
+});
