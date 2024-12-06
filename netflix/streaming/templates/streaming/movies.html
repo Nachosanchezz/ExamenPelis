@@ -23,62 +23,46 @@ Películas - Nacho's Netflix
 <!-- Carrusel de Películas Mejor Calificadas -->
 <div class="carousel-container">
     <h2 class="section-title">Películas Mejor Valoradas</h2>
+    
     <div class="carousel">
         {% for movie in top_rated_movies %}
         <div class="carousel-item">
-            <div class="flip-card">
-                <div class="card-front">
-                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                    <h3>{{ movie.title }}</h3>
-                </div>
-                <div class="card-back">
-                    <p>{{ movie.overview|default:"Sin descripción disponible." }}</p>
-                </div>
-            </div>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
         </div>
         {% endfor %}
     </div>
+    
 </div>
 
 <!-- Carrusel de Películas Próximas -->
 <div class="carousel-container">
     <h2 class="section-title">Próximas Películas</h2>
+    
     <div class="carousel">
         {% for movie in upcoming_movies %}
         <div class="carousel-item">
-            <div class="flip-card">
-                <div class="card-front">
-                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                    <h3>{{ movie.title }}</h3>
-                </div>
-                <div class="card-back">
-                    <p>{{ movie.overview|default:"Sin descripción disponible." }}</p>
-                </div>
-            </div>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
         </div>
         {% endfor %}
     </div>
+    
 </div>
 
 <!-- Carrusel de Películas por Género -->
 <div class="carousel-container">
     <h2 class="section-title">Películas por Género</h2>
+    
     <div class="carousel">
         {% for movie in genre_movies %}
         <div class="carousel-item">
-            <div class="flip-card">
-                <div class="card-front">
-                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                    <h3>{{ movie.title }}</h3>
-                </div>
-                <div class="card-back">
-                    <p>{{ movie.overview|default:"Sin descripción disponible." }}</p>
-                </div>
-            </div>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
         </div>
         {% endfor %}
     </div>
+    
 </div>
 
 {% endblock %}
-

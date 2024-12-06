@@ -1,37 +1,24 @@
 {% extends "streaming/base.html" %}
 {% load static %}
 {% block title %}Resultados de la búsqueda{% endblock %}
-
 {% block content %}
+
 <div class="search-results">
     <h1>Resultados para "{{ query }}"</h1>
-
-    <!-- Resultados de películas -->
     <div class="carousel-container">
         <div class="carousel">
             {% for movie in movies %}
             <div class="carousel-item">
-                <div class="flip-card">
-                    <div class="card-front">
-                        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                        <h3>{{ movie.title }}</h3>
-                    </div>
-                    <div class="card-back">
-                        <p>{{ movie.overview|default:"Sin descripción disponible." }}</p>
-                    </div>
-                </div>
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                <h3>{{ movie.title }}</h3>
             </div>
             {% endfor %}
         </div>
     </div>
-
     {% if not movies %}
-    <p>No se encontraron resultados para "{{ query }}".</p>
+    <p>No hay resultados disponibles.</p>
     {% endif %}
 </div>
-
-
-
 
 
 <nav class="pagination">
@@ -39,10 +26,7 @@
     <a href="?q={{ query }}&page={{ page|add:"-1" }}">Anterior</a>
     {% endif %}
     <a href="?q={{ query }}&page={{ page|add:"1" }}">Siguiente</a>
+
 </nav>
 
-
-
-
 {% endblock %}
-
