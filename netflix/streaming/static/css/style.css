@@ -66,12 +66,16 @@ header nav ul li a:hover {
 }
 
 .carousel-item {
-    display: flex;
-    flex-direction: column; /* Colocar los elementos uno debajo del otro */
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: auto !important;
-    max-height: none !important; /* Sin límite de altura */
+    min-width: 200px; /* Asegura que los elementos del carrusel tengan un tamaño mínimo */
+    max-width: 200px;
+    flex-shrink: 0;
+    text-align: center;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    display: inline-block; /* Evita que los elementos se desplacen fuera del carrusel */
 }
 
 .carousel-item img {
@@ -273,84 +277,4 @@ nav {
 
 .pagination-link.right {
     text-align: right;
-}
-
-.carousel-item p {
-    font-size: 14px;
-    color: #b3b3b3;
-    margin-top: 5px;
-    height: auto; /* Permitir que la altura se ajuste automáticamente */
-    overflow: visible; /* Asegurar que todo el texto sea visible */
-    text-overflow: unset; /* Desactivar el corte de texto */
-    white-space: normal; /* Permitir que el texto se envuelva en varias líneas */
-}
-
-.movie-description {
-    font-size: 14px;
-    color: #b3b3b3;
-    margin-top: 5px;
-    height: auto !important; /* Forzar altura dinámica */
-    overflow: visible !important; /* Asegurar que todo el texto sea visible */
-    text-overflow: unset !important; /* Desactivar el corte del texto */
-    white-space: normal !important; /* Permitir que el texto se ajuste en varias líneas */
-}
-
-p.movie-description {
-    all: unset; /* Reinicia todos los estilos heredados */
-    font-size: 14px;
-    color: #b3b3b3;
-    margin-top: 5px;
-    white-space: normal;
-    overflow: visible;
-    height: auto;
-}
-
-
-.carousel-item a {
-    text-decoration: none;
-    color: inherit;
-    display: block; /* Asegura que todo el elemento sea clicable */
-}
-
-.carousel-item a:hover {
-    color: #e50914; /* Opcional: color al pasar el ratón */
-}
-
-.detail-container {
-    display: flex; /* Coloca los elementos en fila */
-    flex-direction: row; /* Asegura que los hijos estén alineados horizontalmente */
-    align-items: flex-start; /* Alinea los elementos al inicio vertical */
-    gap: 20px; /* Espaciado entre la imagen y la información */
-    padding: 20px; /* Espaciado alrededor del contenedor */
-}
-
-.detail-image img {
-    max-width: 300px; /* Tamaño máximo de la imagen */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para la imagen */
-}
-
-.detail-info {
-    flex: 1; /* La información ocupa el espacio restante */
-    color: #e5e5e5; /* Texto claro */
-    font-size: 16px; /* Tamaño de texto */
-}
-
-.detail-info h1 {
-    color: #e50914; /* Rojo estilo Netflix */
-    margin-bottom: 20px; /* Espaciado debajo del título */
-}
-
-.detail-info p {
-    margin-bottom: 15px; /* Espaciado entre párrafos */
-    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
-}
-
-.detail-info a {
-    color: #e50914; /* Rojo estilo Netflix */
-    text-decoration: none; /* Quita el subrayado */
-}
-
-.detail-info a:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
 }
