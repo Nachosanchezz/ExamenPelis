@@ -255,3 +255,27 @@ class RecommendationView(APIView):
             return Response({"message": "No recommendations found."}, status=status.HTTP_404_NOT_FOUND)
 
 
+from random import choice
+import datetime
+
+def advent_calendar(request):
+    """Vista para mostrar una película diaria basada en el calendario de adviento."""
+    try:
+        # Obtén la fecha actual
+        today = datetime.date.today()
+
+        # Llama a la API para obtener una lista de películas populares
+        all_movies = fetch_movies_from_tmdb("movie/popular")["results"]
+
+        # Selecciona una película del día (asegurándote de que haya películas)
+        if all_movies:
+            recommended_movie = all_movies[today.day % len(all_movies)]
+        else:
+            recommended_movie = None
+
+        return render(request, "streaming/advent_calendar.html", {
+            "today": today,
+            "movie": recommended_movie,
+        })
+    except Exception as e:
+        return render(request, "streaming/advent_calendar.html", {"error": str(e)})

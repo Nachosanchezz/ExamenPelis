@@ -28,6 +28,7 @@ urlpatterns = [
     path("api/playlists/", PlaylistView.as_view(), name="playlist"),
     path("api/recommendations/", RecommendationView.as_view(), name="recommendation"),
     path("series/<int:series_id>/", views.series_detail, name="series-detail"),
+    path("advent-calendar/", views.advent_calendar, name="advent_calendar"),
    
 ]
 

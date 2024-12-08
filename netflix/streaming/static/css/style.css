@@ -278,3 +278,31 @@ nav {
 .pagination-link.right {
     text-align: right;
 }
+
+.advent-calendar-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.movie-of-the-day {
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+    margin: auto;
+}
+
+.movie-of-the-day img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-of-the-day h3 {
+    color: #e50914;
+    margin: 15px 0;
+}
+
+.movie-of-the-day p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
