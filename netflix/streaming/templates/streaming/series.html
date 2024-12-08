@@ -1,6 +1,5 @@
 {% extends "streaming/base.html" %}
 {% load static %}
-
 {% block title %}
 Series - Nacho's Netflix
 {% endblock %}
@@ -21,30 +20,42 @@ Series - Nacho's Netflix
     </form>
 </div>
 
-<!-- Mostrar solo el carrusel adecuado -->
+<!-- Series por Género -->
 {% if genre_series %}
 <div class="carousel-container">
     <h2 class="section-title">Series por Género</h2>
     <div class="carousel">
         {% for serie in genre_series %}
         <div class="carousel-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
-            <h3>{{ serie.name }}</h3>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}" />
+            <div class="movie-info">
+                <h2>{{ serie.name }}</h2>
+                <p>{{ serie.overview|default:"Sin descripción disponible" }}</p>
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
-{% elif popular_series %}
+{% endif %}
+
+<!-- Series Populares -->
+{% if popular_series %}
 <div class="carousel-container">
     <h2 class="section-title">Series Populares</h2>
     <div class="carousel">
         {% for serie in popular_series %}
         <div class="carousel-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
-            <h3>{{ serie.name }}</h3>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}" />
+            <div class="movie-info">
+                <h2>{{ serie.name }}</h2>
+                <p>{{ serie.overview|default:"Sin descripción disponible" }}</p>
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
 {% endif %}
 {% endblock %}
+
+
+

@@ -12,28 +12,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 15;
 
         // Evento para avanzar
-        nextButton.addEventListener("click", () => {
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth; // Máximo desplazamiento permitido
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth; // Máximo desplazamiento permitido
 
-            scrollPosition += itemWidth * 5; // Avanzar 5 ítems por clic
-            if (scrollPosition > maxScroll) {
-                scrollPosition = maxScroll; // Limitar al máximo desplazamiento
-            }
+                scrollPosition += itemWidth * 5; // Avanzar 5 ítems por clic
+                if (scrollPosition > maxScroll) {
+                    scrollPosition = maxScroll; // Limitar al máximo desplazamiento
+                }
 
-            carousel.style.transform = `translateX(-${scrollPosition}px)`;
-        });
+                carousel.style.transform = `translateX(-${scrollPosition}px)`;
+            });
+        }
 
         // Evento para retroceder
-        prevButton.addEventListener("click", () => {
-            scrollPosition -= itemWidth * 5; // Retroceder 5 ítems por clic
-            if (scrollPosition < 0) {
-                scrollPosition = 0; // No permitir retroceder más allá del inicio
-            }
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                scrollPosition -= itemWidth * 5; // Retroceder 5 ítems por clic
+                if (scrollPosition < 0) {
+                    scrollPosition = 0; // No permitir retroceder más allá del inicio
+                }
 
-            carousel.style.transform = `translateX(-${scrollPosition}px)`;
-        });
+                carousel.style.transform = `translateX(-${scrollPosition}px)`;
+            });
+        }
     });
 });
-
-
 

@@ -1,15 +1,16 @@
 {% extends "streaming/base.html" %}
 {% load static %}
+
 {% block title %}
-Películas - Nacho's Netflix
+Series - Nacho's Netflix
 {% endblock %}
 
 {% block content %}
-<h1 class="section-title">Películas</h1>
+<h1 class="section-title">Series</h1>
 
 <!-- Buscador por géneros -->
 <div class="genre-search">
-    <form method="GET" action="{% url 'streaming:movie-search' %}">
+    <form method="GET" action="{% url 'streaming:series' %}">
         <label for="genre-select">Buscar por género:</label>
         <select id="genre-select" name="genre">
             {% for genre in genres %}
@@ -20,49 +21,31 @@ Películas - Nacho's Netflix
     </form>
 </div>
 
-<!-- Carrusel de Películas Mejor Calificadas -->
+<!-- Mostrar solo el carrusel adecuado -->
+{% if genre_series %}
 <div class="carousel-container">
-    <h2 class="section-title">Películas Mejor Valoradas</h2>
-    
+    <h2 class="section-title">Series por Género</h2>
     <div class="carousel">
-        {% for movie in top_rated_movies %}
+        {% for serie in genre_series %}
         <div class="carousel-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h3>{{ movie.title }}</h3>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
+            <h3>{{ serie.name }}</h3>
         </div>
         {% endfor %}
     </div>
-    
 </div>
-
-<!-- Carrusel de Películas Próximas -->
+{% elif popular_series %}
 <div class="carousel-container">
-    <h2 class="section-title">Próximas Películas</h2>
-    
+    <h2 class="section-title">Series Populares</h2>
     <div class="carousel">
-        {% for movie in upcoming_movies %}
+        {% for serie in popular_series %}
         <div class="carousel-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h3>{{ movie.title }}</h3>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
+            <h3>{{ serie.name }}</h3>
         </div>
         {% endfor %}
     </div>
-    
 </div>
-
-<!-- Carrusel de Películas por Género -->
-<div class="carousel-container">
-    <h2 class="section-title">Películas por Género</h2>
-    
-    <div class="carousel">
-        {% for movie in genre_movies %}
-        <div class="carousel-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h3>{{ movie.title }}</h3>
-        </div>
-        {% endfor %}
-    </div>
-    
-</div>
-
+{% endif %}
 {% endblock %}
+
