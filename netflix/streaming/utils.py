@@ -11,7 +11,12 @@ def fetch_movies_from_tmdb(endpoint, params=None):
 
     response = requests.get(url, params=params)
     if response.status_code == 200:
-        return response.json()
+        data = response.json()
+        # Comprobamos si la respuesta incluye 'results' y cada objeto contiene 'overview'
+        if "results" in data:
+            for item in data["results"]:
+                item["overview"] = item.get("overview", "Descripción no disponible.")
+        return data
     else:
         raise Exception(f"Error en la API de TMDb: {response.status_code} - {response.text}")
 
@@ -67,6 +72,11 @@ def fetch_series_genres():
 def search_series_by_genre(genre_id, page=1):
     """Busca series por género utilizando la API de TMDb."""
     return fetch_movies_from_tmdb("discover/tv", {"with_genres": genre_id, "page": page})
+
+def fetch_series_details(series_id):
+    """Obtiene los detalles de una serie por su ID."""
+    return fetch_movies_from_tmdb(f"tv/{series_id}")
+
 
 
 

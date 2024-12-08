@@ -1,0 +1,13 @@
+{% extends "streaming/base.html" %}
+{% block title %}Detalles de {{ movie.title }}{% endblock %}
+
+{% block content %}
+<div class="movie-details-container">
+    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+    <h1>{{ movie.title }}</h1>
+    <p><strong>Descripción:</strong> {{ movie.overview }}</p>
+    <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
+    <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
+    <a href="{% url 'streaming:home' %}">Volver al inicio</a>
+</div>
+{% endblock %}

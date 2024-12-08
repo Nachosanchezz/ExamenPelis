@@ -11,6 +11,7 @@ from .views import (
     series,
     movie_search,
     search_by_name,
+    
 )
 
 app_name = "streaming"
@@ -26,4 +27,8 @@ urlpatterns = [
     path("api/movies/<int:pk>/", MovieDetailView.as_view(), name="movie-detail"),
     path("api/playlists/", PlaylistView.as_view(), name="playlist"),
     path("api/recommendations/", RecommendationView.as_view(), name="recommendation"),
+    path("series/<int:series_id>/", views.series_detail, name="series-detail"),
+   
 ]
+
+

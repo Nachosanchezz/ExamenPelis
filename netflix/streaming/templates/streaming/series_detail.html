@@ -1,0 +1,13 @@
+{% extends "streaming/base.html" %}
+{% block title %}Detalles de {{ series.name }}{% endblock %}
+
+{% block content %}
+<div class="series-detail-container">
+    <img src="https://image.tmdb.org/t/p/w500{{ series.poster_path }}" alt="{{ series.name }}">
+    <h1>{{ series.name }}</h1>
+    <p><strong>Descripción:</strong> {{ series.overview|default:"Sin descripción disponible" }}</p>
+    <p><strong>Primera emisión:</strong> {{ series.first_air_date }}</p>
+    <p><strong>Calificación:</strong> {{ series.vote_average }}/10</p>
+    <a href="{% url 'streaming:series' %}">Volver a Series</a>
+</div>
+{% endblock %}

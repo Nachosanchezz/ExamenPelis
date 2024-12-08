@@ -14,6 +14,7 @@ from .utils import (
     fetch_recommendations,
     fetch_top_rated_movies,
     fetch_upcoming_movies,
+    fetch_series_details,
 )
 
 
@@ -137,12 +138,13 @@ def movie_search(request):
 
 
 def movie_details(request, movie_id):
-    """Vista para obtener detalles de una película."""
+    """Vista para mostrar los detalles de una película."""
     try:
-        data = fetch_movie_details(movie_id)
-        return JsonResponse(data, safe=False)
+        movie = fetch_movie_details(movie_id)
+        return render(request, "streaming/movie_details.html", {"movie": movie})
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+        return render(request, "streaming/movie_details.html", {"error": str(e)})
+
 
 
 def movies(request):
@@ -199,7 +201,13 @@ def series(request):
 
     except Exception as e:
         return render(request, "streaming/series.html", {"error": str(e)})
-
+    
+def series_detail(request, series_id):
+    try:
+        series = fetch_series_details(series_id)
+        return render(request, "streaming/series_detail.html", {"series": series})
+    except Exception as e:
+        return render(request, "streaming/series_detail.html", {"error": str(e)})
 
 
 

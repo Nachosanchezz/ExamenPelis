@@ -9,8 +9,10 @@
         <div class="carousel">
             {% for movie in movies %}
             <div class="carousel-item">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
+                <a href="{% url 'streaming:movie-details' movie.id %}">
+                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                    <h3>{{ movie.title }}</h3>
+                </a>
             </div>
             {% endfor %}
         </div>
@@ -20,13 +22,11 @@
     {% endif %}
 </div>
 
-
 <nav class="pagination">
     {% if page > 1 %}
     <a href="?q={{ query }}&page={{ page|add:"-1" }}">Anterior</a>
     {% endif %}
     <a href="?q={{ query }}&page={{ page|add:"1" }}">Siguiente</a>
-
 </nav>
 
 {% endblock %}
