@@ -333,3 +333,18 @@ def add_to_playlist(request, movie_id):
 
         except ValueError as e:
             return render(request, "streaming/error.html", {"error": str(e)})
+        
+
+@login_required
+def remove_from_playlist(request, movie_id):
+    """Eliminar una película de la playlist del usuario."""
+    if request.method == "POST":
+        try:
+            # Buscar la película en la playlist del usuario
+            movie = get_object_or_404(Playlist, user=request.user, movie_id=movie_id)
+            movie.delete()  # Eliminar la película
+        except Exception as e:
+            # Puedes mostrar un mensaje de error en la plantilla si lo deseas
+            print(f"Error al eliminar la película: {e}")
+        return redirect("streaming:playlist")  # Redirigir de vuelta a la playlist
+    return redirect("streaming:playlist")  # Si no es POST, redirigir igualmente

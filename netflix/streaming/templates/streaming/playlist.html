@@ -8,7 +8,12 @@
         <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
         <h3>{{ movie.title }}</h3>
         <p class="movie-overview">{{ movie.overview|truncatewords:15 }}</p>
+        <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date|date:"j F Y" }}</p>
         <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
+        <form method="POST" action="{% url 'streaming:remove-from-playlist' movie.movie_id %}">
+            {% csrf_token %}
+            <button type="submit" class="remove-btn">Eliminar de Playlist</button>
+        </form>
     </div>
     {% empty %}
     <p>No tienes películas en tu playlist aún.</p>
