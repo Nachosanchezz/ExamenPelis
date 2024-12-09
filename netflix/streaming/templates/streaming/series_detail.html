@@ -3,16 +3,16 @@
 {% block title %}Detalles de {{ series.name }}{% endblock %}
 
 {% block content %}
-<div class="detail-container">
-    <div class="detail-image">
+<div class="movie-details-container">
+    <div class="movie-poster">
         <img src="https://image.tmdb.org/t/p/w500{{ series.poster_path }}" alt="{{ series.name }}">
     </div>
-    <div class="detail-info">
+    <div class="movie-info">
         <h1>{{ series.name }}</h1>
         <p><strong>Descripción:</strong> {{ series.overview|default:"Sin descripción disponible" }}</p>
-        <p><strong>Primera emisión:</strong> {{ series.first_air_date }}</p>
+        <p><strong>Primera emisión:</strong> {{ series.first_air_date|date:"j F Y" }}</p>
         <p><strong>Calificación:</strong> {{ series.vote_average }}/10</p>
-        <a href="{% url 'streaming:series' %}">Volver a Series</a>
+        <a href="{% url 'streaming:series' %}" class="back-btn">Volver a Series</a>
     </div>
 </div>
 {% endblock %}

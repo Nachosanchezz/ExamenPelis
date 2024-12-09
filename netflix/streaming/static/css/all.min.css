@@ -1,15 +1,13 @@
-/* Estilos para el botón de corazón */
-.add-to-playlist-btn {
+.add-btn {
     background-color: transparent;
     border: none;
-    color: red;
-    font-size: 1.5rem;
+    color: #ff4d4d; /* Rojo para el ícono del corazón */
+    font-size: 1.5rem; /* Tamaño del ícono */
     cursor: pointer;
-    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.add-to-playlist-btn:hover {
-    transform: scale(1.2);
-    color: darkred;
+.add-btn:hover {
+    color: #ff1a1a; /* Rojo más brillante al pasar el mouse */
+    transform: scale(1.2); /* Agrandar ligeramente al pasar el mouse */
 }
-

@@ -4,16 +4,17 @@
 {% block title %}Detalles de {{ movie.title }}{% endblock %}
 
 {% block content %}
-<div class="detail-container">
-    <div class="detail-image">
+<div class="movie-details-container">
+    <div class="movie-poster">
         <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
     </div>
-    <div class="detail-info">
+    <div class="movie-info">
         <h1>{{ movie.title }}</h1>
         <p><strong>Descripción:</strong> {{ movie.overview|default:"Sin descripción disponible" }}</p>
-        <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
+        <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date|date:"j F Y" }}</p>
         <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
-        <a href="{% url 'streaming:movies' %}">Volver a Películas</a>
+        <a href="{% url 'streaming:movies' %}" class="back-btn">Volver a Películas</a>
     </div>
 </div>
 {% endblock %}
+

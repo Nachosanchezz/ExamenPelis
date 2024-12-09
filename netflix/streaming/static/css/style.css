@@ -367,3 +367,63 @@ nav {
     color: #ff1a1a; /* Cambia el color al pasar el mouse */
     transform: scale(1.2); /* Hace que el ícono crezca ligeramente */
 }
+
+.add-btn {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    color: #ff0000; /* Corazón rojo */
+    font-size: 1.5rem; /* Tamaño del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: transform 0.2s ease, color 0.2s ease; /* Animación suave */
+}
+
+.add-btn:hover {
+    transform: scale(1.2); /* Agranda ligeramente el ícono al pasar el mouse */
+    color: #e60000; /* Un rojo más oscuro al pasar el mouse */
+}
+
+.movie-details-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.movie-poster img {
+    border-radius: 10px;
+    max-width: 300px;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.movie-info {
+    flex: 1;
+}
+
+.movie-info h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.movie-info p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #e60000;
+}
