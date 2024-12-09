@@ -307,3 +307,50 @@ nav {
     line-height: 1.6;
 }
 
+/* Contenedor de la playlist */
+.playlist-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Tarjeta individual de película */
+.playlist-card {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen de la película */
+.playlist-card img {
+    width: 100%;
+    border-bottom: 2px solid #e50914;
+    margin-bottom: 10px;
+}
+
+/* Título de la película */
+.playlist-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Texto de descripción */
+.movie-overview {
+    font-size: 14px;
+    color: #ccc;
+    margin: 10px 0;
+}
+
+/* Espaciado en detalles */
+.playlist-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+

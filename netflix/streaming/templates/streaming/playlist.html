@@ -1,19 +1,18 @@
 {% extends "streaming/base.html" %}
+{% load static %}
 {% block content %}
-<h1>Mi Playlist</h1>
-{% if playlist %}
-    <div class="playlist-container">
-        {% for movie in playlist %}
-        <div class="movie-item">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h3>{{ movie.title }}</h3>
-            <p>{{ movie.overview|truncatewords:20 }}</p>
-            <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
-            <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
-        </div>
-        {% endfor %}
+<h1 class="section-title">Mi Playlist</h1>
+<div class="playlist-grid">
+    {% for movie in playlist %}
+    <div class="playlist-card">
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+        <h3>{{ movie.title }}</h3>
+        <p class="movie-overview">{{ movie.overview|truncatewords:15 }}</p>
+        <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
     </div>
-{% else %}
+    {% empty %}
     <p>No tienes películas en tu playlist aún.</p>
-{% endif %}
+    {% endfor %}
+</div>
 {% endblock %}
+
