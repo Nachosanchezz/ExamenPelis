@@ -11,7 +11,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Playlist
-        fields = ['id', 'name', 'user', 'movies', 'created_at']
+        fields = '__all__'
 
 class RecommendationSerializer(serializers.ModelSerializer):
     recommended_movies = MovieSerializer(many=True, read_only=True)

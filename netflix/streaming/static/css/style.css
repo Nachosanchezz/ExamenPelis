@@ -306,3 +306,24 @@ nav {
     margin-bottom: 10px;
     line-height: 1.6;
 }
+
+.carousel-item .add-to-playlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.carousel-item .add-to-playlist-btn i {
+    font-size: 20px;
+    color: #ff4c4c;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.carousel-item .add-to-playlist-btn i:hover {
+    transform: scale(1.2);
+}
+
+.carousel-item .add-to-playlist-btn i.active {
+    color: #ff0000; /* Cambiar el color del corazón relleno */
+}

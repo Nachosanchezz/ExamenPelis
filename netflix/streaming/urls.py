@@ -11,6 +11,8 @@ from .views import (
     series,
     movie_search,
     search_by_name,
+    view_playlist,
+    add_to_playlist,
     
 )
 
@@ -29,6 +31,8 @@ urlpatterns = [
     path("api/recommendations/", RecommendationView.as_view(), name="recommendation"),
     path("series/<int:series_id>/", views.series_detail, name="series-detail"),
     path("advent-calendar/", views.advent_calendar, name="advent_calendar"),
+    path("playlist/", view_playlist, name="playlist"),
+    path("add-to-playlist/<int:movie_id>/", add_to_playlist, name="add-to-playlist"),
    
 ]
 

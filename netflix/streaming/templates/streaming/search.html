@@ -13,6 +13,17 @@
                     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
                     <h3>{{ movie.title }}</h3>
                 </a>
+                <form method="POST" action="{% url 'streaming:add-to-playlist' movie.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="title" value="{{ movie.title }}">
+                    <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
+                    <input type="hidden" name="overview" value="{{ movie.overview }}">
+                    <input type="hidden" name="release_date" value="{{ movie.release_date }}">
+                    <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
+                    <button type="submit" class="add-to-playlist-btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -30,6 +41,7 @@
 </nav>
 
 {% endblock %}
+
 
 
 

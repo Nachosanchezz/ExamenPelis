@@ -39,3 +39,43 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".add-to-playlist-btn");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const movieId = button.dataset.movieId;
+            const title = button.dataset.title;
+
+            // Simular un cambio de estado visual del corazón
+            const heartIcon = button.querySelector("i");
+            heartIcon.classList.toggle("active");
+
+            // Enviar una solicitud POST al servidor
+            fetch(`/streaming/add-to-playlist/${movieId}/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                },
+                body: JSON.stringify({ title }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Error al agregar la película a la playlist.");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    // Revertir el cambio visual si falla
+                    heartIcon.classList.toggle("active");
+                });
+        });
+    });
+});

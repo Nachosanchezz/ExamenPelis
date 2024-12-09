@@ -5,17 +5,25 @@ Nacho's Netflix
 {% endblock %}
 
 {% block content %}
-
 <!-- Carrusel de Películas más valoradas -->
 <div class="carousel-container">
     <h2 class="section-title">Películas Mejor Valoradas</h2>
     <div class="carousel">
         {% for movie in top_rated_movies %}
         <div class="carousel-item">
-            <a href="{% url 'streaming:movie-details' movie.id %}">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
-            </a>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+            <form method="POST" action="{% url 'streaming:add-to-playlist' movie.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="title" value="{{ movie.title }}">
+                <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
+                <input type="hidden" name="overview" value="{{ movie.overview }}">
+                <input type="hidden" name="release_date" value="{{ movie.release_date }}">
+                <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
+                <button type="submit" class="add-to-playlist-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -27,10 +35,19 @@ Nacho's Netflix
     <div class="carousel">
         {% for movie in upcoming_movies %}
         <div class="carousel-item">
-            <a href="{% url 'streaming:movie-details' movie.id %}">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
-            </a>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+            <form method="POST" action="{% url 'streaming:add-to-playlist' movie.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="title" value="{{ movie.title }}">
+                <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
+                <input type="hidden" name="overview" value="{{ movie.overview }}">
+                <input type="hidden" name="release_date" value="{{ movie.release_date }}">
+                <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
+                <button type="submit" class="add-to-playlist-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -42,10 +59,19 @@ Nacho's Netflix
     <div class="carousel">
         {% for serie in popular_series %}
         <div class="carousel-item">
-            <a href="{% url 'streaming:movie-details' serie.id %}">
-                <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
-                <h3>{{ serie.name }}</h3>
-            </a>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
+            <h3>{{ serie.name }}</h3>
+            <form method="POST" action="{% url 'streaming:add-to-playlist' serie.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="title" value="{{ serie.name }}">
+                <input type="hidden" name="poster_path" value="{{ serie.poster_path }}">
+                <input type="hidden" name="overview" value="{{ serie.overview }}">
+                <input type="hidden" name="release_date" value="{{ serie.release_date }}">
+                <input type="hidden" name="vote_average" value="{{ serie.vote_average }}">
+                <button type="submit" class="add-to-playlist-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -57,10 +83,19 @@ Nacho's Netflix
     <div class="carousel">
         {% for serie in top_rated_series %}
         <div class="carousel-item">
-            <a href="{% url 'streaming:movie-details' serie.id %}">
-                <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
-                <h3>{{ serie.name }}</h3>
-            </a>
+            <img src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}" alt="{{ serie.name }}">
+            <h3>{{ serie.name }}</h3>
+            <form method="POST" action="{% url 'streaming:add-to-playlist' serie.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="title" value="{{ serie.name }}">
+                <input type="hidden" name="poster_path" value="{{ serie.poster_path }}">
+                <input type="hidden" name="overview" value="{{ serie.overview }}">
+                <input type="hidden" name="release_date" value="{{ serie.release_date }}">
+                <input type="hidden" name="vote_average" value="{{ serie.vote_average }}">
+                <button type="submit" class="add-to-playlist-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -72,15 +107,23 @@ Nacho's Netflix
     <div class="carousel">
         {% for movie in recommended_movies %}
         <div class="carousel-item">
-            <a href="{% url 'streaming:movie-details' movie.id %}">
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-                <h3>{{ movie.title }}</h3>
-            </a>
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+            <form method="POST" action="{% url 'streaming:add-to-playlist' movie.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="title" value="{{ movie.title }}">
+                <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
+                <input type="hidden" name="overview" value="{{ movie.overview }}">
+                <input type="hidden" name="release_date" value="{{ movie.release_date }}">
+                <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
+                <button type="submit" class="add-to-playlist-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </form>
         </div>
         {% empty %}
         <p>No hay recomendaciones disponibles en este momento.</p>
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}
