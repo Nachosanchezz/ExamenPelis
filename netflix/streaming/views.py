@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -231,11 +231,13 @@ class MovieDetailView(APIView):
 
 class PlaylistView(APIView):
     def get(self, request):
+        """Obtener la Playlist del usuario actual en formato JSON."""
         playlists = Playlist.objects.filter(user=request.user)
         serializer = PlaylistSerializer(playlists, many=True)
         return Response(serializer.data)
 
     def post(self, request):
+        """Agregar una nueva película a la Playlist del usuario."""
         data = request.data
         playlist = Playlist.objects.create(
             user=request.user,
@@ -247,7 +249,6 @@ class PlaylistView(APIView):
             vote_average=data.get("vote_average"),
         )
         return Response(PlaylistSerializer(playlist).data, status=status.HTTP_201_CREATED)
-
 
 class RecommendationView(APIView):
     def get(self, request):
@@ -293,21 +294,36 @@ def view_playlist(request):
     playlist = Playlist.objects.filter(user=request.user)
     return render(request, "streaming/playlist.html", {"playlist": playlist})
 
+from datetime import datetime
+
 @login_required
 def add_to_playlist(request, movie_id):
-    """Agregar una película a la Playlist usando un formulario."""
+    """Agregar una película o serie a la Playlist usando un formulario."""
     if request.method == "POST":
         try:
+            release_date = request.POST.get("release_date")
+            
+            # Intenta formatear la fecha, si es válida
+            if release_date:
+                try:
+                    release_date = datetime.strptime(release_date, "%Y-%m-%d").date()
+                except ValueError:
+                    release_date = None  # Si no tiene un formato válido
+            else:
+                release_date = None  # Si está vacío
+
             movie_data = {
                 "movie_id": movie_id,
                 "title": request.POST.get("title"),
                 "poster_path": request.POST.get("poster_path"),
                 "overview": request.POST.get("overview"),
-                "release_date": request.POST.get("release_date"),
-                "vote_average": float(request.POST.get("vote_average").replace(",", ".")),  # Corrige la coma
+                "release_date": release_date,
+                "vote_average": float(request.POST.get("vote_average").replace(",", ".")) if request.POST.get("vote_average") else None,
             }
+
             if not Playlist.objects.filter(user=request.user, movie_id=movie_id).exists():
                 Playlist.objects.create(user=request.user, **movie_data)
             return redirect("streaming:playlist")
+
         except ValueError as e:
-            return render(request, "streaming/error.html", {"error": str(e)}) 
+            return render(request, "streaming/error.html", {"error": str(e)})

@@ -38,9 +38,7 @@ Series - Nacho's Netflix
                 <input type="hidden" name="overview" value="{{ serie.overview }}">
                 <input type="hidden" name="release_date" value="{{ serie.first_air_date }}">
                 <input type="hidden" name="vote_average" value="{{ serie.vote_average }}">
-                <button type="submit" class="add-to-playlist-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button type="submit">Añadir a Playlist</button>
             </form>
         </div>        
         {% endfor %}
@@ -66,9 +64,7 @@ Series - Nacho's Netflix
                 <input type="hidden" name="overview" value="{{ serie.overview }}">
                 <input type="hidden" name="release_date" value="{{ serie.first_air_date }}">
                 <input type="hidden" name="vote_average" value="{{ serie.vote_average }}">
-                <button type="submit" class="add-to-playlist-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button type="submit">Añadir a Playlist</button>
             </form>
         </div>
         {% endfor %}
@@ -77,5 +73,6 @@ Series - Nacho's Netflix
 {% endif %}
 
 {% endblock %}
+
 
 

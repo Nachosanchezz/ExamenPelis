@@ -37,9 +37,7 @@ Películas - Nacho's Netflix
                 <input type="hidden" name="overview" value="{{ movie.overview }}">
                 <input type="hidden" name="release_date" value="{{ movie.release_date }}">
                 <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
-                <button type="submit" class="add-to-playlist-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button type="submit">Añadir a Playlist</button>
             </form>
         </div>
         {% endfor %}
@@ -63,9 +61,7 @@ Películas - Nacho's Netflix
                 <input type="hidden" name="overview" value="{{ movie.overview }}">
                 <input type="hidden" name="release_date" value="{{ movie.release_date }}">
                 <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
-                <button type="submit" class="add-to-playlist-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button type="submit">Añadir a Playlist</button>
             </form>
         </div>
         {% endfor %}
@@ -74,7 +70,7 @@ Películas - Nacho's Netflix
 
 <!-- Carrusel de Películas por Género -->
 <div class="carousel-container">
-    
+
     <div class="carousel">
         {% for movie in genre_movies %}
         <div class="carousel-item">
@@ -89,9 +85,7 @@ Películas - Nacho's Netflix
                 <input type="hidden" name="overview" value="{{ movie.overview }}">
                 <input type="hidden" name="release_date" value="{{ movie.release_date }}">
                 <input type="hidden" name="vote_average" value="{{ movie.vote_average }}">
-                <button type="submit" class="add-to-playlist-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button type="submit">Añadir a Playlist</button>
             </form>
         </div>
         {% endfor %}
@@ -99,4 +93,3 @@ Películas - Nacho's Netflix
 </div>
 
 {% endblock %}
-

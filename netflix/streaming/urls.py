@@ -33,6 +33,8 @@ urlpatterns = [
     path("advent-calendar/", views.advent_calendar, name="advent_calendar"),
     path("playlist/", view_playlist, name="playlist"),
     path("add-to-playlist/<int:movie_id>/", add_to_playlist, name="add-to-playlist"),
+
+
    
 ]
 
