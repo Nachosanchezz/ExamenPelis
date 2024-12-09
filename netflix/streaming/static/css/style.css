@@ -354,18 +354,16 @@ nav {
     margin: 5px 0;
 }
 
-/* Estilo del botón de eliminación */
 .remove-btn {
-    background-color: #e50914;
-    color: #fff;
+    background-color: transparent;
     border: none;
-    padding: 8px 10px;
-    font-size: 14px;
-    border-radius: 4px;
+    color: #ff4d4d; /* Rojo o cualquier color que prefieras */
+    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .remove-btn:hover {
-    background-color: #b20710;
+    color: #ff1a1a; /* Cambia el color al pasar el mouse */
+    transform: scale(1.2); /* Hace que el ícono crezca ligeramente */
 }
