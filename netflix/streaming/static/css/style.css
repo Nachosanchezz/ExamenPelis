@@ -280,32 +280,45 @@ nav {
 }
 
 .advent-calendar-container {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 50px auto;
+    max-width: 800px;
     padding: 20px;
+    background-color: #111; /* Fondo oscuro */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.movie-of-the-day {
-    display: inline-block;
-    text-align: left;
-    max-width: 400px;
-    margin: auto;
-}
-
-.movie-of-the-day img {
-    max-width: 100%;
+.movie-poster {
+    max-width: 300px;
+    width: 100%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.movie-of-the-day h3 {
-    color: #e50914;
-    margin: 15px 0;
+.movie-details {
+    margin-left: 20px;
+    color: #fff;
+    flex: 1;
 }
 
-.movie-of-the-day p {
+.movie-details h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 15px;
+}
+
+.movie-details p {
+    font-size: 1.1em;
     margin-bottom: 10px;
-    line-height: 1.6;
+    line-height: 1.5;
+    text-align: left;
 }
+
 
 /* Contenedor de la playlist */
 .playlist-grid {

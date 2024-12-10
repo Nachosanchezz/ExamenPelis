@@ -6,13 +6,18 @@
     <h1>Calendario de Adviento</h1>
     {% if movie %}
         <h2>Recomendación del día: {{ today|date:"j F Y" }}</h2>
-        <div class="movie-of-the-day">
-            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            <h3>{{ movie.title }}</h3>
-            <p>{{ movie.overview|default:"Sin descripción disponible" }}</p>
-            <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
-            <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
+        <div class="advent-calendar-container">
+            <div class="movie-poster">
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+            </div>
+            <div class="movie-details">
+                <h1>{{ movie.title }}</h1>
+                <p><strong>Descripción:</strong> {{ movie.overview|default:"Sin descripción disponible" }}</p>
+                <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
+                <p><strong>Calificación:</strong> {{ movie.vote_average }}/10</p>
+            </div>
         </div>
+        
     {% else %}
         <p>No hay recomendaciones disponibles en este momento. ¡Vuelve más tarde!</p>
     {% endif %}
