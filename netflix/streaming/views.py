@@ -18,7 +18,7 @@ from .utils import (
 )
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def home(request):
     """Vista principal que organiza los carruseles de películas y series y el buscador."""
     try:

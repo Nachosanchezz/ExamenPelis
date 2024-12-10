@@ -133,6 +133,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = '/auth/login/'  # URL para login
-LOGIN_REDIRECT_URL = '/auth/my_account/'  # Redirige al usuario después de login
-LOGOUT_REDIRECT_URL = '/'  # Redirige después del logout
+LOGIN_URL = '/auth/login/'  # Redirige al login
+LOGIN_REDIRECT_URL = '/'  # Redirige al splash después del login
+LOGOUT_REDIRECT_URL = '/'  # Redirige al splash después del logout

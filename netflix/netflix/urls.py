@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from streaming import views
+from authentication.views import splash_screen
+
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("authentication.urls")),
     path("streaming/", include("streaming.urls")),
-    path("", views.home, name="home"),
+    path("", splash_screen, name="splash-screen"),
 ]
