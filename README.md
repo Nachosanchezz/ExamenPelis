@@ -26,7 +26,7 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
 ```
 
 3. Configura las variables de entorno .env:
-  ```python
+  ```plaintext
   TMDB_API_KEY=tu_api_key
   SECRET_KEY=tu_clave_secreta
 ```
