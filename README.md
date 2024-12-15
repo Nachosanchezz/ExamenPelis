@@ -23,6 +23,7 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
 2. Instala las dependencias:
   ```bash
   pip install -r requirements.txt
+```
 
 3. Configura las variables de entorno .env:
   ```bash
