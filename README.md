@@ -18,14 +18,14 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
 1. Clona el repositorio:  
    ```bash
    git clone https://github.com/Nachosanchezz/ExamenPelis.git
-   cd proyecto
+   cd netflix
 
 2. Instala las dependencias:
   ```bash
   pip install -r requirements.txt
 
 3. Configura las variables de entorno .env:
-  ```python
+  ```bash
   TMDB_API_KEY=tu_api_key
   SECRET_KEY=tu_clave_secreta
 
