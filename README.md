@@ -25,7 +25,7 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
   pip install -r requirements.txt
 
 3. Configura las variables de entorno .env:
-  ```plaintext
+  ```python
   TMDB_API_KEY=tu_api_key
   SECRET_KEY=tu_clave_secreta
 
