@@ -47,7 +47,7 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
    ```
    
 7. Accede al proyecto:
-   Abre tu navegador y ve a ```bash http://127.0.0.1:8000 ```
+   Abre tu navegador y ve a ```http://127.0.0.1:8000 ```
 
 ## 📋 Funcionalidades implementadas
 - Registro e inicio de sesión.
@@ -56,7 +56,7 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
 
 ## 👤 Autor
 - Github: Nachosanchezz
-- Link repositorio: 
+- Link repositorio: https://github.com/Nachosanchezz/ExamenPelis.git
 
 
 
