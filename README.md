@@ -1,4 +1,4 @@
-# 🚀 Proyecto: Mi Netflix
+# 🚀 Proyecto: Nacho's Netflix
 
 ## 🌟 Descripción
 Este proyecto es una plataforma que permite a los usuarios explorar contenido dinámico y gestionar listas personalizadas.
@@ -27,6 +27,22 @@ Este proyecto es una plataforma que permite a los usuarios explorar contenido di
 
 3. Configura las variables de entorno .env:
   ```plaintext
-  TMDB_API_KEY=tu_api_key
-  SECRET_KEY=tu_clave_secreta
+  TMDB_API_KEY = tu_api_key
+  SECRET_KEY = tu_clave_secreta
 ```
+
+4. Ejecuta el servidor:
+   ```bash
+   python manage.py runserver
+
+## 📋 Funcionalidades implementadas
+- Registro e inicio de sesión.
+- Visualización de contenido popular desde TMBD.
+- Agregar listas personalizadas
+
+## 👤 Autor
+- Github: Nachosanchezz
+
+
+
+
