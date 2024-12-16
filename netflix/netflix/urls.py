@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from authentication.views import splash_screen
-
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,3 +26,9 @@ urlpatterns = [
     path("streaming/", include("streaming.urls")),
     path("", splash_screen, name="splash-screen"),
 ]
+
+# Archivos estáticos
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Archivos de medios (solo en desarrollo)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
